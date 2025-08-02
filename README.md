@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+# 🎬 React Query Movies Search with Pagination
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Цей застосунок дозволяє здійснювати пошук фільмів за допомогою API The Movie Database (TMDB), з реалізованою пагінацією. Для роботи із запитами та кешуванням використано бібліотеку [TanStack Query (react-query)](https://tanstack.com/query/latest).
 
-Currently, two official plugins are available:
+## 📦 Стек технологій
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** + **TypeScript**
+- **Vite** — швидке збірне середовище
+- **TanStack Query (react-query)** — для управління асинхронними запитами
+- **Axios** — для запитів до TMDB API
+- **React Paginate** — для відображення пагінації
+- **CSS Modules** — для стилізації
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔍 Основні можливості
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Пошук фільмів за ключовим словом
+- Відображення результатів пошуку
+- Підтримка пагінації (перехід між сторінками результатів)
+- Кешування та керування станами запитів через `react-query`
+- Зручна навігація з використанням `ReactPaginate`
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧠 Структура логіки
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- У файлі `main.tsx` відбувається налаштування `QueryClientProvider` для `react-query`.
+- У компоненті `App.tsx` реалізовано:
+  - хук `useQuery` для завантаження фільмів з урахуванням пошукового запиту та сторінки;
+  - відображення результатів;
+  - контроль пагінації.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📁 Структура проєкту
+
+src/
+├── api/
+│ └── moviesApi.ts # Запити до TMDB
+├── components/
+│ └── SearchBar.tsx # Компонент пошуку
+├── App.module.css # Стилі, включно з пагінацією
+├── App.tsx # Головний компонент
+├── main.tsx # Ініціалізація React Query
+└── types.ts # Типи для TMDB відповіді
+
+Цей проєкт виконано як навчальне завдання в рамках курсу GoIT Fullstack Developer. Усі права захищено ©
